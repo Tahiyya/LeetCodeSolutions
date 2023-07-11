@@ -1,0 +1,47 @@
+# 876. Middle of the Linked List
+
+#----------Question----------
+# Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+Input: head = [1,2,3,4,5]
+Output: [3,4,5]
+Explanation: The middle node of the list is node 3.
+
+#----------Solution----------------
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        "The solution uses hare and turtle approach, where the hare moves forward once for every step and the turtle moves forward once for every two steps of the hare"
+
+        # Start by assigning head to end and mid
+        end = head
+        mid = head
+        hare = 0
+
+        # If there is more than one node, traverse the singly linked list
+        while(head != None):
+
+            # Move to second node
+            head = head.next
+
+            # Since there exists another node, present node is not last node
+            # Hence, make next node as end node
+            end = head
+
+            # If hare counter is odd, value of turtle increase
+            # Hence, move mid to next node from previous mid
+            hare += 1
+            if hare % 2 != 0:
+                mid = mid.next
+                # print(hare)
+                # print(mid.val)
+            
+        return mid
